@@ -19,7 +19,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieSession({
-  secret: config.secretKey
+  secret: config.secretKey,
 }));
 app.use(security.initialize());
 app.use(security.session());
@@ -32,4 +32,4 @@ app.use(appRouter);
 
 database.sync()
   .then(() => app.listen(config.port, () => logger.info(`server started on port ${config.port}.`)))
-  .catch(err => logger.error(err.message));
+  .catch((err) => logger.error(err.message));

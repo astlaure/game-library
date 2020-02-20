@@ -10,17 +10,17 @@ const sequelize = new Sequelize({
   database: config.database.name,
   username: config.database.username,
   password: config.database.password,
-  dialect: 'mysql'
-})
+  dialect: 'mysql',
+});
 
 User.init(userSchema, {
   sequelize,
   tableName: 'users',
   indexes: [
     {
-      fields: ['username']
-    }
-  ]
+      fields: ['username'],
+    },
+  ],
 });
 
 GameInfo.init(gameInfoSchema, {
@@ -35,7 +35,7 @@ GameStatus.init(gameStatusSchema, {
 
 Game.init(gameSchema, {
   sequelize,
-  tableName: 'games'
+  tableName: 'games',
 });
 
 Game.hasOne(GameStatus);

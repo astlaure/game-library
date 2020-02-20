@@ -9,23 +9,23 @@ const createUser = async () => {
       {
         name: 'username',
         type: 'text',
-        message: 'username'
+        message: 'username',
       },
       {
         name: 'password',
         type: 'password',
-        message: 'password'
+        message: 'password',
       },
       {
         name: 'confirmation',
         type: 'password',
-        message: 'confirmation'
-      }
+        message: 'confirmation',
+      },
     ]);
 
     if (answers.password !== answers.confirmation) {
       console.error('passwords don\'t match.');
-      return;
+      process.exit(1);
     }
 
     await database.sync();
@@ -34,11 +34,11 @@ const createUser = async () => {
     await User.create({ username: answers.username, password, enabled: true });
 
     console.log('created successfully.');
-    return;
+    process.exit(0);
   } catch (err) {
     console.error('an error occured.');
-    return;
+    process.exit(1);
   }
-}
+};
 
 createUser();

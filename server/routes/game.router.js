@@ -10,8 +10,9 @@ router.get('/', async (req, res) => {
 
     return res.status(200).json(games);
   } catch (err) {
+    logger.error(err.message);
     return res.sendStatus(500);
   }
-})
+});
 
 module.exports = router;
